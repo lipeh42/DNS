@@ -1,0 +1,45 @@
+auto lo
+iface lo inet loopback
+
+
+
+auto enp0s3
+iface enp0s3 inet dhcp
+
+
+
+------------
+
+
+auto enp0s8
+iface enp0s8 inet static         
+address 192.168.1.1    -------------->SERVIDOR DEBIAN
+netmask 255.255.255.0
+network 192.168.1.1     ----------------------->REDE
+
+2º-Após setar as interfaces de rede ( placas), deverá instalar os serviço DHCP no servidor
+com comando abaixo:
+#apt-get update
+#apt-get install  isc-dhcp-server
+
+
+ddns-update-style none;
+default-lease-time 600;
+max-lease-time 7200;
+authoritative;
+log-facility local7;
+option domain-name "seu_Servidor";
+
+
+
+subnet 192.168.1.0  netmask 255.255.255.0 {
+range 192.168.1.150 192.168.1.200;
+option domain-name-servers 8.8.8.8, 8.8.4.4;
+option routers 192.168.1.254;
+option broadcast-address 192.168.2.255;
+}
+
+
+systemctl restart isc-dhcp-server.service  <----- debian 11
+/etc/init.d/isc-dhcp-server restart  <----- debian 11
+
