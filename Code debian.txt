@@ -1,0 +1,19 @@
+/etc/resolv.conf
+#Apt-get update
+#Apt-get install bind9
+
+"Zone “eteplap.com” {
+type master;
+file “db.eteplap.com”;
+}"
+
+
+#nano /etc/bind/db.eteplap.com
+
+#systemctl restart bind9.service
+
+Ou
+
+#/etc/init.d/bind9 restart
+
+“restart” “status” “stop”
