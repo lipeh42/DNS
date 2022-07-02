@@ -1,2 +1,3 @@
-# DNS
+# DNS / dhcp
+
 Servidor DNS debian !! 
